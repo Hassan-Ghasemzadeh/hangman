@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hangman/features/question/presentation/bloc/question_bloc.dart';
@@ -92,66 +94,48 @@ class _QuestionState extends State<Question> {
           ),
           BlocConsumer<KeyboardCubit, KeyboardState>(
             listener: (context, state) async {
-              if (state.wrongLetters.length >= 6) {
+              if (state.wrongLetters.length == 6) {
                 await showDialog(
-                  context: navigator.context,
-                  builder: (ctx) => AlertDialog(
-                    contentPadding: const EdgeInsets.all(50),
-                    content: const Text(
-                      "Hang Man: Game Over.",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                      ),
+                  context: context,
+                  barrierColor: Colors.white.withOpacity(0.2),
+                  builder: (ctx) => BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 241, 53, 163),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Game Over',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(14),
-                          child: const Text("okay"),
-                        ),
-                      ),
-                    ],
                   ),
                 );
+                navigator.pop();
               }
             },
             builder: (context, state) {
               return Center(
                 child: Stack(
                   children: [
-                    figureImage(
-                      // ignore: prefer_is_empty
-                      state.wrongLetters.length >= 0,
-                      "assets/hang.png",
-                    ),
-                    figureImage(
-                      // ignore: prefer_is_empty
-                      state.wrongLetters.length >= 1,
-                      "assets/head.png",
-                    ),
-                    figureImage(
-                      state.wrongLetters.length >= 2,
-                      "assets/body.png",
-                    ),
-                    figureImage(
-                      state.wrongLetters.length >= 3,
-                      "assets/ra.png",
-                    ),
-                    figureImage(
-                      state.wrongLetters.length >= 4,
-                      "assets/la.png",
-                    ),
-                    figureImage(
-                      state.wrongLetters.length >= 5,
-                      "assets/rl.png",
-                    ),
-                    figureImage(
-                      state.wrongLetters.length >= 6,
-                      "assets/ll.png",
+                    figure(
+                      state.wrongLetters.length,
                     ),
                   ],
                 ),
