@@ -15,10 +15,9 @@ class KeyboardCubit extends Cubit<KeyboardState> {
     emit(KeyboardState(letters, wrongLetter));
     if (!question.contains(char)) {
       wrongLetter.add(char);
-    }
-    if (wrongLetter.length > 6) {
       emit(KeyboardState(letters, wrongLetter));
     }
+    if (wrongLetter.length > 6) {}
   }
 
   void clearTheLetters() {
