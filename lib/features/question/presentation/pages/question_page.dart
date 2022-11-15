@@ -90,7 +90,35 @@ class _QuestionState extends State<Question> {
               ),
             ),
           ),
-          BlocBuilder<KeyboardCubit, KeyboardState>(
+          BlocConsumer<KeyboardCubit, KeyboardState>(
+            listener: (context, state) async {
+              if (state.wrongLetters.length >= 6) {
+                await showDialog(
+                  context: navigator.context,
+                  builder: (ctx) => AlertDialog(
+                    contentPadding: const EdgeInsets.all(50),
+                    content: const Text(
+                      "Hang Man: Game Over.",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(14),
+                          child: const Text("okay"),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+            },
             builder: (context, state) {
               return Center(
                 child: Stack(

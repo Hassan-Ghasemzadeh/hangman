@@ -11,13 +11,14 @@ class KeyboardCubit extends Cubit<KeyboardState> {
   List<String> wrongLetter = <String>[];
 
   void onCharSelected(String char, String question) {
-    letters.add(char);
-    emit(KeyboardState(letters, wrongLetter));
-    if (!question.contains(char)) {
-      wrongLetter.add(char);
+    if (wrongLetter.length < 6) {
+      letters.add(char);
       emit(KeyboardState(letters, wrongLetter));
+      if (!question.contains(char)) {
+        wrongLetter.add(char);
+        emit(KeyboardState(letters, wrongLetter));
+      }
     }
-    if (wrongLetter.length > 6) {}
   }
 
   void clearTheLetters() {
