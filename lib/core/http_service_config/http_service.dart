@@ -9,7 +9,7 @@ abstract class IHttpService {
 
 class HttpService extends IHttpService {
   late Dio _dio;
-  static const baseUrl = 'http://192.168.1.4:8080';
+  static const baseUrl = 'http://192.168.1.7:8080';
   HttpService() {
     _dio = Dio(
       BaseOptions(

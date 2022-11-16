@@ -25,15 +25,28 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Welcome',
+    return Scaffold(
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: const [
+          SizedBox(
+            height: 20,
           ),
-          centerTitle: true,
-        ),
-        body: const CategoryList(),
+          Center(
+            child: Text(
+              'فهرست دسته بندی',
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.black,
+                fontFamily: 'Shekari',
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          CategoryList(),
+        ],
       ),
     );
   }

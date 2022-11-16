@@ -34,7 +34,11 @@ class _LoginState extends State<SignUp> {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: const Text(
-            'Authentication User',
+            'User Authentication',
+            style: TextStyle(
+              fontFamily: 'Swagstie',
+              fontSize: 25,
+            ),
           ),
           centerTitle: true,
         ),
@@ -44,8 +48,8 @@ class _LoginState extends State<SignUp> {
             const Text(
               'SignUp',
               style: TextStyle(
-                fontWeight: FontWeight.w700,
                 fontSize: 35.0,
+                fontFamily: 'Swagstie',
               ),
             ),
             AppTextField(
@@ -82,7 +86,13 @@ class _LoginState extends State<SignUp> {
               onPressed: () {
                 navigator.pop();
               },
-              child: const Text('back to login'),
+              child: const Text(
+                'back to login',
+                style: TextStyle(
+                  fontSize: 15.0,
+                  fontFamily: 'Swagstie',
+                ),
+              ),
             )
           ],
         ),

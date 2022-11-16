@@ -38,23 +38,24 @@ class _QuestionKeyboardState extends State<QuestionKeyboard> {
                     (char) => GestureDetector(
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
+                          horizontal: 15.0,
                           vertical: 10.0,
                         ),
                         margin: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color(0xFF282f61), width: 2.0),
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                            10.0,
-                          ) //                 <--- border radius here
-                              ),
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 64, 196, 255),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(
+                              10.0,
+                            ),
+                          ),
                         ),
                         child: Text(
                           char,
                           style: const TextStyle(
-                            color: Colors.deepPurpleAccent,
-                            fontSize: 14.0,
+                            color: Colors.white,
+                            fontSize: 20.0,
+                            fontFamily: 'Shekari',
                           ),
                         ),
                       ),

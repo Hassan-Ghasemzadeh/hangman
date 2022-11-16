@@ -22,6 +22,10 @@ class AppTextField extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle: const TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Swagstie',
+          ),
           prefixIcon: prefixIcon,
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),

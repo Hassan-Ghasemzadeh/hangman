@@ -64,11 +64,7 @@ class _QuestionState extends State<Question> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: const Text('Question Page'),
-        centerTitle: true,
-      ),
+      backgroundColor: const Color.fromARGB(255, 100, 3, 147),
       bottomNavigationBar: BlocBuilder<QuestionBloc, QuestionState>(
         buildWhen: (previous, current) => current is MessedUpQuestionState,
         builder: (context, state) {
@@ -87,8 +83,9 @@ class _QuestionState extends State<Question> {
             child: Text(
               'دسته بندی ⬅️ $category',
               style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                fontSize: 30.0,
+                fontFamily: 'Shekari',
               ),
             ),
           ),
@@ -104,7 +101,7 @@ class _QuestionState extends State<Question> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.zero,
                           child: Container(
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.9,
@@ -116,9 +113,9 @@ class _QuestionState extends State<Question> {
                               child: Text(
                                 'Game Over',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                    fontFamily: 'Swagstie'),
                               ),
                             ),
                           ),

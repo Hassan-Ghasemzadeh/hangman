@@ -12,7 +12,7 @@ class UserDataSource extends IUserRepository {
   Future<User> loginUser(String name, String password) async {
     final response = await CrashHandler.I.tryAsync<Response>(
       () async {
-        const endPoint = 'http://192.168.1.4:8080/auth/login';
+        const endPoint = '/auth/login';
         return http.post(
           endPoint,
           {
@@ -42,7 +42,7 @@ class UserDataSource extends IUserRepository {
   Future<User> signUp(String name, String password) async {
     final response = await CrashHandler.I.tryAsync<Response>(
       () async {
-        const endPoint = 'http://192.168.1.4:8080/auth/signUp';
+        const endPoint = '/auth/signUp';
         return http.post(
           endPoint,
           {

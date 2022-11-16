@@ -11,7 +11,7 @@ class HomeDataSource extends IHomeRepository {
   @override
   Future<Category> getCategories() async {
     final response = await CrashHandler.I.tryAsync<Response>(() async {
-      const endPoint = 'http://192.168.1.4:8080/user/getCategories';
+      const endPoint = '/user/getCategories';
       return http.getRequest(endPoint);
     });
     final exception = response.exception;

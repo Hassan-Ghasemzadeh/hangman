@@ -32,7 +32,11 @@ class _LoginState extends State<Login> {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: const Text(
-            'Authentication User',
+            'User Authentication',
+            style: TextStyle(
+              fontFamily: 'Swagstie',
+              fontSize: 25,
+            ),
           ),
           centerTitle: true,
         ),
@@ -42,8 +46,8 @@ class _LoginState extends State<Login> {
             const Text(
               'Login',
               style: TextStyle(
-                fontWeight: FontWeight.w700,
                 fontSize: 35.0,
+                fontFamily: 'Swagstie',
               ),
             ),
             AppTextField(
@@ -80,7 +84,13 @@ class _LoginState extends State<Login> {
               onPressed: () {
                 context.read<AuthBloc>().add(NavigateToSignUpEvent());
               },
-              child: const Text('sign up for free'),
+              child: const Text(
+                'sign up for free',
+                style: TextStyle(
+                  fontSize: 15.0,
+                  fontFamily: 'Swagstie',
+                ),
+              ),
             )
           ],
         ),

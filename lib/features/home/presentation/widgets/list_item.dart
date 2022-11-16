@@ -18,20 +18,20 @@ class ListItem extends StatelessWidget {
             );
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Container(
-          height: 40,
-          padding: const EdgeInsets.all(5),
+          height: 50,
+          padding: const EdgeInsets.only(right: 10, top: 10),
           decoration: BoxDecoration(
-            color: Colors.amber,
+            color: Colors.pink,
             borderRadius: BorderRadius.circular(5.0),
           ),
           child: Text(
             item,
             textDirection: TextDirection.rtl,
             style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
+              fontSize: 30,
+              fontFamily: 'Shekari',
             ),
           ),
         ),

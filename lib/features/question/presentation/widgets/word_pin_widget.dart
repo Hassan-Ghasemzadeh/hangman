@@ -43,7 +43,7 @@ class WordPinWidget extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[300],
+                          color: const Color.fromARGB(255, 64, 196, 255),
                         ),
                         width: 40,
                         height: 40,
@@ -51,6 +51,11 @@ class WordPinWidget extends StatelessWidget {
                           child: Text(
                             item ?? '',
                             textDirection: TextDirection.rtl,
+                            style: const TextStyle(
+                              fontFamily: 'Shekari',
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

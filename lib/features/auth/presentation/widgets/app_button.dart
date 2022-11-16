@@ -17,7 +17,13 @@ class AppButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(data),
+        child: Text(
+          data,
+          style: const TextStyle(
+            fontFamily: 'Swagstie',
+            fontSize: 20,
+          ),
+        ),
       ),
     );
   }

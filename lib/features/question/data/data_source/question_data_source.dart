@@ -13,7 +13,7 @@ class QuestionDataSource extends IQuestionRepository {
   @override
   Future<MessedUpQuestion> getMessedUpQuestion(String category) async {
     final response = await CrashHandler.I.tryAsync<Response>(() async {
-      const endPoint = 'http://192.168.1.4:8080/user/getMessedUpQuestion';
+      const endPoint = '/user/getMessedUpQuestion';
       return http.post(
         endPoint,
         {
@@ -40,7 +40,7 @@ class QuestionDataSource extends IQuestionRepository {
   @override
   Future<Letter> getLetter(String category) async {
     final response = await CrashHandler.I.tryAsync<Response>(() async {
-      const endPoint = 'http://192.168.1.4:8080/user/getLetters';
+      const endPoint = '/user/getLetters';
       return http.post(
         endPoint,
         {
