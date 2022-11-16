@@ -1,9 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hangman/features/question/presentation/bloc/question_bloc.dart';
 import 'package:hangman/features/question/presentation/cubit/keyboard_cubit.dart';
+import 'package:hangman/features/question/presentation/widgets/dialog.dart';
 import 'package:hangman/features/question/presentation/widgets/question_keyboard.dart';
 import 'package:hangman/features/question/presentation/widgets/word_pin_widget.dart';
 import '../../../../core/nav_tools/nav_tools.dart';
@@ -42,7 +42,7 @@ class Question extends StatefulWidget {
 
 class _QuestionState extends State<Question> {
   String category = '';
-
+  String answer = '';
   @override
   void didChangeDependencies() {
     final s = ModalRoute.of(context)!.settings.arguments;
@@ -70,7 +70,8 @@ class _QuestionState extends State<Question> {
         builder: (context, state) {
           if (state is MessedUpQuestionState) {
             if (state.status.isSuccess) {
-              return QuestionKeyboard(question: state.question!.question.title);
+              answer = state.question!.question.title;
+              return QuestionKeyboard(question: answer);
             }
           }
           return Container();
@@ -79,51 +80,47 @@ class _QuestionState extends State<Question> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Center(
-            child: Text(
-              'دسته بندی ⬅️ $category',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 30.0,
-                fontFamily: 'Shekari',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                width: 50,
               ),
-            ),
+              Text(
+                'دسته بندی ⬅️ $category',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 30.0,
+                  fontFamily: 'Shekari',
+                ),
+              ),
+              Row(
+                children: [
+                  const Text(
+                    '1400 ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontFamily: 'Shekari',
+                    ),
+                  ),
+                  SvgPicture.asset(
+                    'assets/icons/dollar_coin.svg',
+                    width: 40,
+                    height: 40,
+                  ),
+                ],
+              ),
+            ],
           ),
           BlocConsumer<KeyboardCubit, KeyboardState>(
             listener: (context, state) async {
               if (state.wrongLetters.length == 6) {
-                await showDialog(
-                  context: context,
-                  barrierColor: Colors.white.withOpacity(0.2),
-                  builder: (ctx) => BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.zero,
-                          child: Container(
-                            height: 50,
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 241, 53, 163),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Game Over',
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.white,
-                                    fontFamily: 'Swagstie'),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                );
+                await showAlertDialog(title: 'Game Over');
+                navigator.pop();
+              }
+              if (state.correctLetters.length == answer.length) {
+                await showAlertDialog(title: 'You Win');
                 navigator.pop();
               }
             },

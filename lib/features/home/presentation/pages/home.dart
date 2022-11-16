@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hangman/features/home/presentation/bloc/home_bloc.dart';
 import 'package:hangman/features/home/presentation/widgets/category_list.dart';
 
@@ -28,24 +29,47 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             height: 20,
           ),
-          Center(
-            child: Text(
-              'فهرست دسته بندی',
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.black,
-                fontFamily: 'Shekari',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                width: 50,
               ),
-            ),
+              const Text(
+                'فهرست دسته بندی',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.black,
+                  fontFamily: 'Shekari',
+                ),
+              ),
+              Row(
+                children: [
+                  const Text(
+                    '1400 ',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30.0,
+                      fontFamily: 'Shekari',
+                    ),
+                  ),
+                  SvgPicture.asset(
+                    'assets/icons/dollar_coin.svg',
+                    width: 40,
+                    height: 40,
+                  ),
+                ],
+              ),
+            ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          CategoryList(),
+          const CategoryList(),
         ],
       ),
     );
